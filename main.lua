@@ -1,9 +1,3 @@
---[[
-
-    rm -rf .git
-
-]]--
-
 function love.load()
 
 end
