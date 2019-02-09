@@ -29,15 +29,13 @@ end
 
 function generateGrid()
     love.math.setRandomSeed(os.time())
-    local newGrid = Grid{
-        cellSize = 20
-    }
+    local newGrid = CelAutMap{}
 
-    for x = 1, newGrid.xSize do
-        for y = 1, newGrid.ySize do
-            newGrid[x][y] = love.math.random()
-        end
-    end
+    -- for x = 1, newGrid.xSize do
+    --     for y = 1, newGrid.ySize do
+    --         newGrid[x][y] = love.math.random()
+    --     end
+    -- end
 
     return newGrid
 end
