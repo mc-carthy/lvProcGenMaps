@@ -29,6 +29,10 @@ end
 function love.keypressed(key)
     if key == 'escape' then
         love.event.quit()
+    elseif key == 'space' then
+        if grid.smoothGrid then
+            grid:smoothGrid()
+        end
     else
         grid = generateGrid()
     end

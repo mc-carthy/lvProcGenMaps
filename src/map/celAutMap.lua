@@ -4,7 +4,7 @@ function CelAutMap:new(params)
     self.cellSize = params.cellSize or 5
     self.xSize = params.xSize or love.graphics.getWidth() / self.cellSize
     self.ySize = params.ySize or love.graphics.getHeight() / self.cellSize
-    self.smoothingIterations = params.smoothingIterations or 2
+    self.smoothingIterations = params.smoothingIterations or 0
     self.fillPercentage = params.fillPercentage or 0.475
 
     self:createGrid()
