@@ -9,9 +9,9 @@ function CelAutMap:new(params)
 
     self:createGrid()
     self:initialiseGridValues()
-    for i = 0, self.smoothingIterations do
-        self:smoothGrid()
-    end
+    -- for i = 0, self.smoothingIterations do
+    --     self:smoothGrid()
+    -- end
 end
 
 function CelAutMap:createGrid()
