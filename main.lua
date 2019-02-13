@@ -8,7 +8,6 @@ function love.load()
 end
 
 function love.update(dt)
-
 end
 
 function love.draw()
@@ -40,12 +39,12 @@ end
 function love.keypressed(key)
     if key == 'escape' then
         love.event.quit()
-    elseif key == 'space' then
-        if grid.smoothGrid then
-            grid:smoothGrid()
-        end
+    -- elseif key == 'space' then
+    --     if grid.smoothGrid then
+    --         grid:smoothGrid()
+    --     end
     else
-        grid = generateGrid()
+        grid = generatePerlinGrid()
     end
 end
 
