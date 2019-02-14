@@ -12,6 +12,7 @@ function PerlinMap:new(params)
     self:createGrid()
     self:initialiseGridValues(self.seed)
     self:normaliseGridValues()
+    self:roundGridValues(0.45)
 end
 
 function PerlinMap:createGrid()
@@ -45,6 +46,16 @@ function PerlinMap:normaliseGridValues()
     for x = 1, self.xSize do
         for y = 1, self.ySize do
             self[x][y] = (self[x][y] - min) / (max - min)
+        end
+    end
+end
+
+function PerlinMap:roundGridValues(threshold)
+    local threshold = threshold or 0.5
+    for x = 1, self.xSize do
+        for y = 1, self.ySize do
+            if self[x][y] > threshold then self[x][y] = 1 end
+            if self[x][y] < threshold then self[x][y] = 0 end
         end
     end
 end
