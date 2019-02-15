@@ -5,14 +5,13 @@ function PerlinMap:new(params)
     self.seed = params.seed or os.time()
     self.numOctaves = 4
     love.math.setRandomSeed(self.seed)
-    self.cellSize = params.cellSize or 4
+    self.cellSize = params.cellSize or 2
     self.xSize = params.xSize or love.graphics.getWidth() / self.cellSize
     self.ySize = params.ySize or love.graphics.getHeight() / self.cellSize
-    self.scale = params.scale or 0.01
+    self.scale = params.scale or 0.02
     self.xOff, self.yOff = love.math.random(10000), love.math.random(10000)
     self.t = 0
     self.tScale = 1
-    self:createGrid()
     self:initialiseGridValues()
     self:normaliseGridValues()
     self:roundGridValues(0.45)
@@ -22,6 +21,7 @@ function PerlinMap:update(dt)
     self.t = self.t + dt
     self:initialiseGridValues()
     self:normaliseGridValues()
+    self:roundGridValues(0.45)
 end
 
 function PerlinMap:initialiseGridValues()
