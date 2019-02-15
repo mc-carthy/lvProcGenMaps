@@ -3,11 +3,12 @@ require('src.utils.dependencies')
 local grid
 
 function love.load()
-    grid = CelAutMap{}
-    -- grid = PerlinMap{}
+    -- grid = CelAutMap{}
+    grid = PerlinMap{}
 end
 
 function love.update(dt)
+    if grid.update then grid:update(dt) end
 end
 
 function love.draw()
@@ -34,6 +35,8 @@ function love.draw()
     --         love.graphics.rectangle('fill', (x - 1) * grid.cellSize, (y - 1) * grid.cellSize, grid.cellSize, grid.cellSize)
     --     end
     -- end
+    love.graphics.setColor(1, 1, 1)
+    love.graphics.print(love.timer.getFPS(), 10, 10)
 end
 
 function love.keypressed(key)

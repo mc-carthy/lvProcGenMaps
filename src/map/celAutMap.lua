@@ -5,7 +5,7 @@ function CelAutMap:new(params)
     self.xSize = params.xSize or love.graphics.getWidth() / self.cellSize
     self.ySize = params.ySize or love.graphics.getHeight() / self.cellSize
     self.smoothingIterations = params.smoothingIterations or 0
-    self.fillPercentage = params.fillPercentage or 0.475
+    self.fillPercentage = params.fillPercentage or 0.47
 
     self:createGrid()
     self:initialiseGridValues()
@@ -35,8 +35,9 @@ function CelAutMap:initialiseGridValues()
     end
 end
 
+-- TODO: There seems to be an issue where map border thickness is being applied incorrectly to bottom & right sides
 function CelAutMap:smoothGrid()
-    local mapBorderThickness = self.mapBorderThickness or 2
+    local mapBorderThickness = self.mapBorderThickness or 5
     for x = 1, self.xSize do
         for y = 1, self.ySize do
             local neighbourCount = 0
