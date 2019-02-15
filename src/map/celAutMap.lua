@@ -1,7 +1,7 @@
 local CelAutMap = Class:extend()
 
 function CelAutMap:new(params)
-    self.cellSize = params.cellSize or 5
+    self.cellSize = params.cellSize or 2
     self.xSize = params.xSize or love.graphics.getWidth() / self.cellSize
     self.ySize = params.ySize or love.graphics.getHeight() / self.cellSize
     self.smoothingIterations = params.smoothingIterations or 0
@@ -69,6 +69,10 @@ function CelAutMap:smoothGrid()
             end
         end
     end
+end
+
+function CelAutMap:keypressed(key)
+    self:smoothGrid()
 end
 
 return CelAutMap

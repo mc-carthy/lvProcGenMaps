@@ -3,8 +3,8 @@ require('src.utils.dependencies')
 local grid
 
 function love.load()
-    -- grid = generateCelAutGrid()
-    grid = generatePerlinGrid()
+    grid = CelAutMap{}
+    -- grid = PerlinMap{}
 end
 
 function love.update(dt)
@@ -39,28 +39,7 @@ end
 function love.keypressed(key)
     if key == 'escape' then
         love.event.quit()
-    -- elseif key == 'space' then
-    --     if grid.smoothGrid then
-    --         grid:smoothGrid()
-    --     end
-    else
-        grid = generatePerlinGrid()
+    elseif grid.keypressed then
+        grid:keypressed(key)
     end
-end
-
-function generateCelAutGrid()
-    love.math.setRandomSeed(os.time())
-    local newGrid = CelAutMap{}
-
-    -- for x = 1, newGrid.xSize do
-    --     for y = 1, newGrid.ySize do
-    --         newGrid[x][y] = love.math.random()
-    --     end
-    -- end
-
-    return newGrid
-end
-
-function generatePerlinGrid()
-    return PerlinMap{}
 end

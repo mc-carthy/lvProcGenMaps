@@ -1,6 +1,7 @@
 local PerlinMap = Class:extend()
 
 function PerlinMap:new(params)
+    self.params = params or {}
     self.seed = params.seed or os.time()
     self.numOctaves = 3
     love.math.setRandomSeed(self.seed)
@@ -58,6 +59,10 @@ function PerlinMap:roundGridValues(threshold)
             if self[x][y] < threshold then self[x][y] = 0 end
         end
     end
+end
+
+function PerlinMap:keypressed(key)
+    self = self:new(self.params)
 end
 
 return PerlinMap
