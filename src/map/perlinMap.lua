@@ -10,18 +10,19 @@ function PerlinMap:new(params)
     self.ySize = params.ySize or love.graphics.getHeight() / self.cellSize
     self.scale = params.scale or 0.02
     self.xOff, self.yOff = love.math.random(10000), love.math.random(10000)
+    self.mapBorderSize = 5
     self.t = 0
     self.tScale = 1
     self:initialiseGridValues()
     self:normaliseGridValues()
-    self:roundGridValues(0.45)
+    self:roundGridValues(0.7)
 end
 
 function PerlinMap:update(dt)
     self.t = self.t + dt
     self:initialiseGridValues()
     self:normaliseGridValues()
-    self:roundGridValues(0.45)
+    self:roundGridValues(0.7)
 end
 
 function PerlinMap:initialiseGridValues()
@@ -38,6 +39,9 @@ function PerlinMap:initialiseGridValues()
                         self.t * self.tScale
                     )) *
                         (0.5 ^ o)
+            end
+            if self:isBorderCell(x, y) then
+                self[x][y] = 0
             end
         end
     end
@@ -67,14 +71,17 @@ function PerlinMap:roundGridValues(threshold)
     local threshold = threshold or 0.5
     for x = 1, self.xSize do
         for y = 1, self.ySize do
-            if self[x][y] > threshold then
-                self[x][y] = 1
-            end
-            if self[x][y] < threshold then
+            if self[x][y] > threshold or self:isBorderCell(x, y) then
                 self[x][y] = 0
+            else
+                self[x][y] = 1
             end
         end
     end
+end
+
+function PerlinMap:isBorderCell(x, y)
+    return x < self.mapBorderSize + 1 or x > self.xSize - (self.mapBorderSize + 1) or y < self.mapBorderSize + 1 or y > self.ySize - (self.mapBorderSize + 1)
 end
 
 function PerlinMap:keypressed(key)
